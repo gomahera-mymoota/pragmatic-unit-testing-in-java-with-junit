@@ -1,0 +1,20 @@
+package iloveyouboss;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ScoreCollection {
+
+    private final List<Scoreable> scores = new ArrayList<>();
+
+    public void add(Scoreable scoreable) {
+        scores.add(scoreable);
+    }
+
+    public int arithmeticMean() {
+        var total = scores.stream().mapToInt(Scoreable::getScore).sum();
+
+        return total / scores.size();
+    }
+
+}
