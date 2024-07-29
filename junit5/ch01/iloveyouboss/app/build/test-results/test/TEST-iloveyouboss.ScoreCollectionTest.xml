@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="iloveyouboss.ScoreCollectionTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-07-29T02:42:07" hostname="DESKTOP-B3QFQIF" time="0.028">
+  <properties/>
+  <testcase name="두 수의 산술평균 테스트" classname="iloveyouboss.ScoreCollectionTest" time="0.028"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
