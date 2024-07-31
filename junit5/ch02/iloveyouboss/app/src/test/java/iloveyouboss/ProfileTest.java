@@ -1,6 +1,7 @@
 package iloveyouboss;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,6 +27,24 @@ public class ProfileTest {
 
         // Assert
         assertFalse(matches);
+    }
+
+    @Test
+    @DisplayName("돈 케어가 하나라도 있으면 답은 TRUE")
+    public void testMatchAnswersTrueForAnyDontCareCriteria() {
+        var profile = new Profile("Bull Hockey, Inc.");
+        var question = new BooleanQuestion(1, "Got milk?");
+        var profileAnswer = new Answer(question, Bool.FALSE);
+        profile.add(profileAnswer);
+
+        var criteria = new Criteria();
+        var criteriaAnswer = new Answer(question, Bool.TRUE);
+        var criterion = new Criterion(criteriaAnswer, Weight.DontCare);
+        criteria.add(criterion);
+
+        var matches = profile.matches(criteria);
+
+        assertTrue(matches);
     }
 
 }
