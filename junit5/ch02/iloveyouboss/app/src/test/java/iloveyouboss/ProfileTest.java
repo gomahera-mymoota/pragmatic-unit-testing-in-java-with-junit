@@ -23,13 +23,8 @@ public class ProfileTest {
     @DisplayName("머스트 매치 조건이 만족하지 않을 때 답은 FALSE")
     public void testMatchAnswersFalseWhenMustMatchCriteriaNotMet() {
         // Arrange
-        var profileAnswer = new Answer(question, Bool.FALSE);
-        profile.add(profileAnswer);
-
-        var criteriaAnswer = new Answer(question, Bool.TRUE);
-        var criterion = new Criterion(criteriaAnswer, Weight.MustMatch);
-
-        criteria.add(criterion);
+        profile.add(new Answer(question, Bool.FALSE));
+        criteria.add(new Criterion(new Answer(question, Bool.TRUE), Weight.MustMatch));
 
         // Act
         var matches = profile.matches(criteria);
@@ -41,12 +36,8 @@ public class ProfileTest {
     @Test
     @DisplayName("돈 케어가 하나라도 있으면 답은 TRUE")
     public void testMatchAnswersTrueForAnyDontCareCriteria() {
-        var profileAnswer = new Answer(question, Bool.FALSE);
-        profile.add(profileAnswer);
-
-        var criteriaAnswer = new Answer(question, Bool.TRUE);
-        var criterion = new Criterion(criteriaAnswer, Weight.DontCare);
-        criteria.add(criterion);
+        profile.add(new Answer(question, Bool.FALSE));
+        criteria.add(new Criterion(new Answer(question, Bool.TRUE), Weight.DontCare));
 
         var matches = profile.matches(criteria);
 
