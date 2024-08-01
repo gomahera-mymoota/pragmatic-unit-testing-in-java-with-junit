@@ -1,16 +1,22 @@
 package scratch;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.endsWith;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.everyItem;
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.isA;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -113,6 +119,40 @@ public class AssertTest {
 
         assertThat(account.getName(), is(notNullValue()));  // not helpful
         assertThat(account.getName(), equalTo("my big fat acct"));
+    }
+
+    @Test
+    public void testSameInstance() {
+        var a = new Account("a");
+        var aPrime = new Account("a");
+
+        assertThat(a, not(sameInstance(aPrime)));
+    }
+
+    @Test
+    public void testMoreMatchers() {
+        var account = new Account(null);
+
+        assertThat(account.getName(), is(nullValue()));
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    public void testItems() {
+        List<String> names = new ArrayList<>();
+        names.add("Moe");
+        names.add("Larry");
+        names.add("Curly");
+
+        assertThat(names, hasItem("Curly"));
+
+        assertThat(names, hasItems("Curly", "Moe"));
+
+        assertThat(names, hasItem(endsWith("y")));
+
+        assertThat(names, hasItems(endsWith("y"), startsWith("C")));
+
+        assertThat(names, not(everyItem(endsWith("y"))));
     }
 
 }
