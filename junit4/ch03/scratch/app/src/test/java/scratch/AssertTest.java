@@ -1,11 +1,14 @@
 package scratch;
 
+import java.util.Arrays;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class AssertTest {
@@ -45,15 +48,39 @@ public class AssertTest {
         assertTrue(account.hasPositiveBalance());                   // 이게 더 낫다
     }
 
+    @Ignore
     @Test
     public void testAssertFailure() {
         // 아래 testMatchesFailure()의 에러메시지와 비교
         assertTrue(account.getName().startsWith("xyz"));
     }
 
+    @Ignore
     @Test
     public void testMatchesFailure() {
         assertThat(account.getName(), startsWith("xyz"));
+    }
+
+    @Test
+    @ExpectToFail
+    public void testComparesArraysFailing() {
+        assertThat(new String[] {"a", "b", "c"}, equalTo(new String[] {"a", "b"}));
+    }
+
+    @Test
+    @ExpectToFail
+    public void testComparesCollectionsFailing() {
+        assertThat(Arrays.asList(new String[] {"a"}), equalTo(Arrays.asList(new String[] {"a", "b"})));
+    }
+
+    @Test
+    public void testComparesArraysPassing() {
+        assertThat(new String[] {"a", "b"}, equalTo(new String[] {"a", "b"}));
+    }
+
+    @Test
+    public void testComparesCollectionsPassing() {
+        assertThat(Arrays.asList(new String[] {"a"}), equalTo(Arrays.asList(new String[] {"a"})));
     }
 
 }
