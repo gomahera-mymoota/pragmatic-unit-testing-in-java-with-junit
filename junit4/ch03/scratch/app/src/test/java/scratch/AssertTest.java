@@ -2,8 +2,15 @@ package scratch;
 
 import java.util.Arrays;
 
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.CoreMatchers.anyOf;
+import static org.hamcrest.CoreMatchers.endsWith;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.isA;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -61,12 +68,14 @@ public class AssertTest {
         assertThat(account.getName(), startsWith("xyz"));
     }
 
+    @Ignore
     @Test
     @ExpectToFail
     public void testComparesArraysFailing() {
         assertThat(new String[] {"a", "b", "c"}, equalTo(new String[] {"a", "b"}));
     }
 
+    @Ignore
     @Test
     @ExpectToFail
     public void testComparesCollectionsFailing() {
@@ -81,6 +90,29 @@ public class AssertTest {
     @Test
     public void testComparesCollectionsPassing() {
         assertThat(Arrays.asList(new String[] {"a"}), equalTo(Arrays.asList(new String[] {"a"})));
+    }
+
+    @Test
+    public void testVariousMatcherTests() {
+        // decorator
+        var account = new Account("my big fat acct");
+
+        assertThat(account.getName(), equalTo("my big fat acct"));
+        assertThat(account.getName(), is(equalTo("my big fat acct")));
+
+        assertThat(account.getName(), allOf(startsWith("my"), endsWith("acct")));
+
+        assertThat(account.getName(), anyOf(startsWith("my"), endsWith("loot")));
+
+        assertThat(account.getName(), not(equalTo("plunderings")));
+
+        assertThat(account.getName(), is(not(nullValue())));
+        assertThat(account.getName(), is(notNullValue()));
+
+        assertThat(account.getName(), isA(String.class));
+
+        assertThat(account.getName(), is(notNullValue()));  // not helpful
+        assertThat(account.getName(), equalTo("my big fat acct"));
     }
 
 }
