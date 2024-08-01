@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="iloveyouboss.ProfileTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-07-31T03:08:54" hostname="DESKTOP-B3QFQIF" time="0.015">
+  <properties/>
+  <testcase name="머스트 매치 조건이 만족하지 않을 때 답은 FALSE" classname="iloveyouboss.ProfileTest" time="0.015"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
