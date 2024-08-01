@@ -261,4 +261,11 @@ public class AssertTest {
         new File("test.txt").delete();
     }
 
+    // @Ignore 사용법
+    @Test
+    @Ignore("don't forget me!")
+    public void testSomethingWeCannotHandleRightNow() {
+        
+    }
+
 }
