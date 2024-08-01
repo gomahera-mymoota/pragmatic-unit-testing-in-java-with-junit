@@ -1,5 +1,9 @@
 package scratch;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,6 +24,7 @@ import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.number.IsCloseTo.closeTo;
+import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
@@ -239,6 +244,21 @@ public class AssertTest {
         var thrown = assertThrows(InsufficientFundsException.class, () -> account.withdraw(100));
 
         assertEquals(thrown.getMessage(), "balance only 0");
+    }
+
+    // 예외 무시: checked exception 처리 방법
+    @Test
+    public void testReadsFromTestFile() throws IOException {
+        var filename = "test.txt";
+        var writer = new BufferedWriter(new FileWriter(filename));
+
+        writer.write("test data");
+        writer.close();
+    }
+
+    @After
+    public void deleteForReadsFromTestFile() {
+        new File("test.txt").delete();
     }
 
 }
