@@ -20,10 +20,15 @@ import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.number.IsCloseTo.closeTo;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import static scratch.PointMatcher.isNear;
 
@@ -197,4 +202,43 @@ public class AssertTest {
         assertThat("account balance is 100", account.getBalance(), equalTo(50));
     }
     
+    // 예외를 기대하는 세 가지 방법
+    // 1. 단순
+    @Test(expected=InsufficientFundsException.class)
+    public void testThrowsWhenWithdrawingTooMush() {
+        // account.withdraw(0);
+        account.withdraw(100);
+    }
+
+    // 2. 옛 방식: try/catch, fail
+    @Test
+    public void testThrowsWhenWithdrawingTooMuchTry() {
+        try {
+            account.withdraw(100);
+            fail();
+        } catch (InsufficientFundsException expected) {
+            assertThat(expected.getMessage(), equalTo("balance only 0"));
+        }
+    }
+
+    // 3. 새로운 방식: ExpectedException 규칙 - deprecated
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+    @Test
+    public void testExceptionRule() {
+        thrown.expect(InsufficientFundsException.class);
+        thrown.expectMessage("balance only 0");
+
+        account.withdraw(100);
+    }
+
+    // 4. Assert.assertThrows since 4.13
+    @Test
+    public void testAssertThrows() {
+        var thrown = assertThrows(InsufficientFundsException.class, () -> account.withdraw(100));
+
+        assertEquals(thrown.getMessage(), "balance only 0");
+    }
+
 }
