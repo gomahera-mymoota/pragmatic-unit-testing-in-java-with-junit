@@ -188,5 +188,13 @@ public class AssertTest {
         // hamcrest 라이브러리를 gradle에 추가 필요
         assertThat(2.32 * 3, closeTo(6.96, 0.0005));
     }
+
+    // 단언 설명 - 권장하지 않음
+    @Test
+    public void testWithWorthlessAssertionComment() {
+        account.deposit(50);
+
+        assertThat("account balance is 100", account.getBalance(), equalTo(50));
+    }
     
 }
