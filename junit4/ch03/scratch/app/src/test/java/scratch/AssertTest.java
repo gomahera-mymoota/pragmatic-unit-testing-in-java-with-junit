@@ -19,6 +19,7 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.number.IsCloseTo.closeTo;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -160,6 +161,7 @@ public class AssertTest {
     // 사용자 정의 매처로 테스트
     @Test
     @ExpectToFail
+    @Ignore
     public void testPointLocation() {
         var point = new Point(4, 5);
 
@@ -168,4 +170,23 @@ public class AssertTest {
 
         assertThat(point, isNear(3.6, 5.1));
     }
+
+    // 3.1.4 부동소수점 수를 두 개 비교
+    @Test
+    @Ignore
+    public void testAssertDoubleEqual() {
+        assertThat(2.32 * 3, equalTo(6.96));
+    }
+
+    @Test
+    public void testAssertWithTolerance() {
+        assertTrue(Math.abs((2.32 * 3) - 6.96) < 0.0005);
+    }
+
+    @Test
+    public void testAssertDoublesCloseTo() {
+        // hamcrest 라이브러리를 gradle에 추가 필요
+        assertThat(2.32 * 3, closeTo(6.96, 0.0005));
+    }
+    
 }
