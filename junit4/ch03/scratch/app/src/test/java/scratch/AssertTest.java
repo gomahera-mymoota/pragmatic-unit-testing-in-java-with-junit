@@ -24,6 +24,8 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static scratch.PointMatcher.isNear;
+
 public class AssertTest {
 
     private Account account;
@@ -155,4 +157,15 @@ public class AssertTest {
         assertThat(names, not(everyItem(endsWith("y"))));
     }
 
+    // 사용자 정의 매처로 테스트
+    @Test
+    @ExpectToFail
+    public void testPointLocation() {
+        var point = new Point(4, 5);
+
+        assertThat(point.x, closeTo(3.6, 0.2));
+        assertThat(point.y, closeTo(5.1, 0.2));
+
+        assertThat(point, isNear(3.6, 5.1));
+    }
 }
