@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="scratch.AssertTest" tests="23" skipped="6" failures="0" errors="0" timestamp="2024-08-01T08:54:27" hostname="DESKTOP-B3QFQIF" time="0.033">
+  <properties/>
+  <testcase name="testExceptionRule" classname="scratch.AssertTest" time="0.014"/>
+  <testcase name="testWithWorthlessAssertionComment" classname="scratch.AssertTest" time="0.001"/>
+  <testcase name="testDepositIncreasesBalance_hamcrestAssertTrue" classname="scratch.AssertTest" time="0.001"/>
+  <testcase name="testAssertDoubleEqual" classname="scratch.AssertTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="testComparesArraysFailing" classname="scratch.AssertTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="testComparesCollectionsPassing" classname="scratch.AssertTest" time="0.001"/>
+  <testcase name="testComparesArraysPassing" classname="scratch.AssertTest" time="0.001"/>
+  <testcase name="testDepositIncreasesBalance" classname="scratch.AssertTest" time="0.0"/>
+  <testcase name="testItems" classname="scratch.AssertTest" time="0.003"/>
+  <testcase name="testSameInstance" classname="scratch.AssertTest" time="0.001"/>
+  <testcase name="testAssertFailure" classname="scratch.AssertTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="testPointLocation" classname="scratch.AssertTest" time="0.003">
+    <skipped/>
+  </testcase>
+  <testcase name="testAssertDoublesCloseTo" classname="scratch.AssertTest" time="0.001"/>
+  <testcase name="testMatchesFailure" classname="scratch.AssertTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="testHasPositiveBalance" classname="scratch.AssertTest" time="0.001"/>
+  <testcase name="testReadsFromTestFile" classname="scratch.AssertTest" time="0.001"/>
+  <testcase name="testAssertWithTolerance" classname="scratch.AssertTest" time="0.0"/>
+  <testcase name="testAssertThrows" classname="scratch.AssertTest" time="0.001"/>
+  <testcase name="testVariousMatcherTests" classname="scratch.AssertTest" time="0.001"/>
+  <testcase name="testThrowsWhenWithdrawingTooMuchTry" classname="scratch.AssertTest" time="0.001"/>
+  <testcase name="testMoreMatchers" classname="scratch.AssertTest" time="0.001"/>
+  <testcase name="testThrowsWhenWithdrawingTooMush" classname="scratch.AssertTest" time="0.0"/>
+  <testcase name="testComparesCollectionsFailing" classname="scratch.AssertTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
