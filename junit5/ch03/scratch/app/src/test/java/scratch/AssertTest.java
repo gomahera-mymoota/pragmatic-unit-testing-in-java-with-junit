@@ -1,11 +1,14 @@
 package scratch;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class AssertTest {
@@ -48,21 +51,46 @@ public class AssertTest {
         assertThat(account.hasPositiveBalance()).isTrue();      // assertJ 방식
     }
 
+    @Disabled
     @Test
     public void testAssertFailure() {
         // 아래 testMatchesFailure()의 에러 메시지와 비교
         assertTrue(account.getName().startsWith("xyz"));
     }
 
+    @Disabled
     @Test
     public void testMatchesFailure() {
         // 아래 testAssertJMatchesFailure()의 가독성 및 에러 메시지와 비교
         org.hamcrest.MatcherAssert.assertThat(account.getName(), startsWith("xyz"));
     }
     
+    @Disabled("for test to be continued")
     @Test
     public void testAssertJMatchesFailure() {
         assertThat(account.getName()).startsWith("xyz");
+    }
+
+    @Test
+    @ExpectToFail
+    public void testComparesArraysFailing() {
+        assertThat(new String[] {"a", "b", "c"}).isEqualTo(new String[] {"a", "b"});
+    }
+
+    @Test
+    @ExpectToFail
+    public void testComparesCollectionsFailing() {
+        assertThat(Arrays.asList(new String[] {"a"})).isEqualTo(Arrays.asList(new String[] {"a", "b"}));
+    }
+
+    @Test
+    public void testComparesArraysPassing() {
+        assertThat(new String[] {"a", "b"}).isEqualTo(new String[] {"a", "b"});
+    }
+
+    @Test
+    public void testComparesCollectionsPassing() {
+        assertThat(Arrays.asList(new String[] {"a"})).isEqualTo(Arrays.asList(new String[] {"a"}));
     }
 
 }
